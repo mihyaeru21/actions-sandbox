@@ -1,6 +1,6 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["echo"]
+  resolves = ["uname"]
 }
 
 action "run sh" {
@@ -25,6 +25,6 @@ action "echo" {
 
 action "uname" {
   uses = "actions/bin/sh@master"
-  args = ["uname -a"]
   needs = ["echo"]
+  args = ["uname -a"]
 }
