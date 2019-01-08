@@ -11,12 +11,12 @@ action "run sh" {
 action "cat" {
   uses = "actions/bin/sh@master"
   needs = ["run sh"]
-  args = "[\"cat LICENSE\"]"
+  args = ["cat LICENSE"]
 }
 
 action "echo" {
   uses = "actions/bin/sh@master"
-  args = "[\"echo $HOGE\"]"
+  args = ["echo $HOGE"]
   env = {
     HOGE = "環境変数だよ"
   }
