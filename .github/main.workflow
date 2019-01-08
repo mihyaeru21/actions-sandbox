@@ -1,6 +1,6 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["uname"]
+  resolves = ["cpu-mem"]
 }
 
 action "run sh" {
@@ -27,4 +27,10 @@ action "uname" {
   uses = "actions/bin/sh@master"
   needs = ["echo"]
   args = ["uname -a"]
+}
+
+action "cpu-mem" {
+  uses = "actions/bin/sh@master"
+  needs = ["uname"]
+  args = ["cat /proc/cpuinfo; cat /proc/meminfo"]
 }
