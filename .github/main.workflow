@@ -22,3 +22,9 @@ action "echo" {
   }
   needs = ["cat"]
 }
+
+action "uname" {
+  uses = "actions/bin/sh@master"
+  args = ["uname -a"]
+  needs = ["echo"]
+}
