@@ -1,6 +1,6 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["\tactions/bin/sh@master"]
+  resolves = ["echo"]
 }
 
 action "run sh" {
@@ -8,7 +8,17 @@ action "run sh" {
   args = ["ls -al"]
 }
 
-action "\tactions/bin/sh@master" {
-  uses = "\tactions/bin/sh@master"
+action "cat" {
+  uses = "actions/bin/sh@master"
   needs = ["run sh"]
+  args = "[\"cat LICENSE\"]"
+}
+
+action "echo" {
+  uses = "actions/bin/sh@master"
+  args = "[\"echo $HOGE\"]"
+  env = {
+    HOGE = "環境変数だよ"
+  }
+  needs = ["cat"]
 }
